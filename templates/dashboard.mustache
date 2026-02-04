@@ -1,0 +1,76 @@
+<div class="local_realtime_engagement_dashboard container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-muted">{{#str}}dashboard_overview, local_realtime_engagement{{/str}}</p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <form action="{{^url}}/local/realtime_engagement/dashboard.php{{/url}}" method="GET" class="form-inline">
+                <input type="hidden" name="courseid" value="{{courseid}}" />
+                <label for="timeperiod-select" class="mr-2">{{#str}}filter_time_period, local_realtime_engagement{{/str}}:</label>
+                <select name="timeperiod" id="timeperiod-select" class="custom-select mr-2" onchange="this.form.submit()">
+                    {{#timefilteroptions}}
+                        <option value="{{value}}" {{#selected}}selected{{/selected}}>{{name}}</option>
+                    {{/timefilteroptions}}
+                </select>
+            </form>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="{{historical_data_url}}" class="btn btn-secondary">{{#str}}view_historical_data, local_realtime_engagement{{/str}}</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4 engagement-panel">
+                <div class="card-header">{{#str}}engagement_summary, local_realtime_engagement{{/str}}</div>
+                <div class="card-body">
+                    {{#students}}
+                        {{> local_realtime_engagement/student_row}}
+                    {{/students}}
+                    {{^students}}
+                        <div class="alert alert-info">{{#str}}no_engagement_data, local_realtime_engagement{{/str}}</div>
+                    {{/students}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 alerts-panel">
+                <div class="card-header">{{#str}}alerts_title, local_realtime_engagement{{/str}}</div>
+                <div class="card-body">
+                    {{#alerts}}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{.}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {{/alerts}}
+                    {{^alerts}}
+                       <div class="alert alert-success">No active disengagement alerts.</div>
+                    {{/alerts}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{#js}}
+    <script type="text/javascript">
+        require(['jquery'], function($) {
+            // Auto-refresh logic
+            var refreshInterval = {{refreshinterval}} * 1000;
+            var dashboardurl = new URL(window.location.href);
+            dashboardurl.searchParams.set('force_refresh', '1'); // Add a parameter to force refresh
+
+            if ({{refresh}}) {
+                setInterval(function() {
+                    // Reload the page to get fresh data
+                    window.location.reload();
+                }, refreshInterval);
+            }
+        });
+    </script>
+    {{/js}}
+</div>

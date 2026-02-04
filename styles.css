@@ -1,0 +1,76 @@
+/**
+ * Styles for the Real-time Engagement plugin.
+ *
+ * @package    local_realtime_engagement
+ * @copyright  2024 John Mulama <johnmulama001@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @author     John Mulama - Senior Software Engineer (johnmulama001@gmail.com)
+ */
+
+.local_realtime_engagement_dashboard {
+    margin-top: 20px;
+}
+
+.engagement-panel, .alerts-panel {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.engagement-panel .card-header, .alerts-panel .card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.engagement-high {
+    background-color: #e6ffe6; /* Light green */
+    border-left: 5px solid #28a745; /* Green */
+}
+
+.engagement-medium {
+    background-color: #fffacd; /* Lemon Chiffon */
+    border-left: 5px solid #ffc107; /* Yellow */
+}
+
+.engagement-low {
+    background-color: #ffe6e6; /* Light red */
+    border-left: 5px solid #dc3545; /* Red */
+}
+
+.rounded-circle {
+    border: 1px solid #ddd;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.form-inline .form-control, .form-inline .custom-select {
+    width: auto; /* Allow select to size naturally */
+}
+
+.text-muted {
+    font-size: 0.9em;
+}
+
+.text-right {
+    text-align: right;
+}
